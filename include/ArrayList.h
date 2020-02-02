@@ -78,6 +78,10 @@ public:
     }
     T remove(int index)
     {
+        if(this->n == 0)
+        {
+            throw "UNDERFLOW exception.";
+        }
         T obj = this->array[index];
         for(int i = index; i < this->n; i++)
         {
