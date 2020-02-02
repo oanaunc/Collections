@@ -1,52 +1,57 @@
 #include <iostream>
 using namespace std;
 #include "List.h"
+#include "ArrayList.h"
 
 template<class T>
-void citeste(List<T> list) {
+void citeste(List<T> *list) {
     T val;
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < list->size(); i++) {
         printf("Introduceti valoare pentru x[%d]: ", i);
         scanf("%d", &val);
-        list.push(val);
+        list->push(val);
     }
 }
 
 template<class T>
-void scrie(List<T> list) {
-    list.print();
+void scrie(List<T> *list) {
+    list->print();
 }
 
 template<class T>
-int inserare(List<T> list, T elem_nou, int k) {
-    list.push(k, elem_nou);
-    return list.size();
+int inserare(List<T> *list, T elem_nou, int k) {
+    list->push(k, elem_nou);
+    return list->size();
 } 
 
 template<class T>
-int eliminare(List<T> list, int k) {
-    list.remove(k);
-    return list.size();
+int eliminare(List<T> *list, int k) {
+    list->remove(k);
+    return list->size();
 }
 
 int main() {
-    int i, val, elem_nou, k;
+    int i, val, elem_nou, k, n;
     char c;
-    List<int> myList;
+    printf("\nSpecifica marimea listei: ");
+    scanf("%d", &n);
+
+    List<int> *myList = new ArrayList<int>(n);
     citeste(myList);
     scrie(myList);
+
 
     printf("\nIntroduceti indicile elementului pe care doriti sa il accesati: ");
     scanf("%d", &i);
 
-    printf("\nAti accesat elementului: x[%d]=%d", i, myList.get(i));
+    printf("\nAti accesat elementului: x[%d]=%d", i, myList->get(i));
     printf("\nDoriti sa il modificati? (Y/N) ");
     rewind(stdin);
     c = getchar();
     if(c == 'Y' || c == 'y') {
         printf("\nIntroduceti noua valoare: ");
         scanf("%d", &val);
-        myList.replace(i, val);
+        myList->replace(i, val);
         printf("\nSirul este acum\n");
         scrie(myList);
     }
@@ -64,6 +69,7 @@ int main() {
     n = eliminare(myList, k);
     printf("Sirul este acum\n");
     scrie(myList);
+
     return 0;
 
 }

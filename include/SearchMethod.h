@@ -3,7 +3,7 @@
 
 #include "List.h"
 
-template<class T>
+template <class T>
 class SearchMethod {
     virtual void search(List<T> &list) = 0;
 };
